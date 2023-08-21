@@ -1,7 +1,15 @@
 const fetch = require('node-fetch')
 const moment = require('date-format')
 
-const target = 1 * 60 * 1000
+const targetMinutes = parseInt(process.argv[2])
+if (!(targetMinutes > 0)) {
+  throw new Error('Include target minutes')
+}
+
+console.log(`Buzzing about every ${targetMinutes} minutes`)
+
+
+const target = targetMinutes * 60 * 1000
 
 sendMessage()
 setInterval(run, target)
